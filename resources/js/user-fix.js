@@ -123,6 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const motivationTextarea = document.getElementById("motivation");
     const backButton = document.getElementById("backBtn");
 
+    // const applyMdlAlreadyApply = document.getElementById("applyMdlAlreadyApply");
+
     // Initialize default message
     defaultMessage.classList.remove("hidden");
     detailContent.classList.add("hidden");
@@ -149,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 namaBenefit,
                 button,
                 route,
+
             } = card.dataset;
 
             // Update detail content
@@ -192,13 +195,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     "opacity-50"
                 );
                 applyButton.disabled = true;
+            } else if (button === "Already Applied") {
+                applyButton.classList.remove(
+                    "bg-cyan-500",
+                    "hover:bg-button_hover",
+                    "cursor-pointer"
+                );
+                applyButton.classList.add(
+                    "bg-gray-400",
+                    "cursor-not-allowed",
+                    "opacity-50"
+                );
+                applyButton.disabled = true;
             }
 
             // Apply button event
             applyButton.addEventListener("click", () => {
-                registrationForm.action = route;
-                applyModal.classList.remove("hidden", "pointer-events-none");
-                applyModal.classList.add("flex");
+                    registrationForm.action = route;
+                    applyModal.classList.remove("hidden", "pointer-events-none");
+                    applyModal.classList.add("flex");
             });
 
             closeModal.addEventListener("click", () => {
@@ -316,8 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailContent = detailContainer.querySelector(".detail-content");
 
     const applyButton = document.getElementById("applyBtn");
-    const applyModal = document.getElementById("applyMdl");
-    const isLoggedIn = applyModal.getAttribute("data-is-logged-in") === "true";
+    const applyModalNotLogin = document.getElementById("applyMdlNotLogin");
+    const isLoggedIn = applyModalNotLogin.getAttribute("data-is-logged-in") === "true";
     const closeModal = document.getElementById("closeApplyMdl");
     const registrationForm = document.getElementById("registrationForm");
 
@@ -443,17 +458,17 @@ document.addEventListener("DOMContentLoaded", () => {
     applyButton.addEventListener("click", () => {
         if (isLoggedIn) {
             // User login: Tampilkan modal form
-            applyModal.classList.remove("opacity-0", "pointer-events-none");
-            applyModal.classList.add("opacity-100");
+            applyModalNotLogin.classList.remove("opacity-0", "pointer-events-none");
+            applyModalNotLogin.classList.add("opacity-100");
         } else {
             // User belum login: Tampilkan alert
-            applyModal.classList.remove("opacity-0", "pointer-events-none");
-            applyModal.classList.add("opacity-100");
+            applyModalNotLogin.classList.remove("opacity-0", "pointer-events-none");
+            applyModalNotLogin.classList.add("opacity-100");
 
             // Hilangkan alert setelah 3 detik
             setTimeout(() => {
-                applyModal.classList.add("opacity-0", "pointer-events-none");
-                applyModal.classList.remove("opacity-100");
+                applyModalNotLogin.classList.add("opacity-0", "pointer-events-none");
+                applyModalNotLogin.classList.remove("opacity-100");
             }, 3000);
         }
     });
@@ -461,8 +476,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closeModal) {
         closeModal.addEventListener("click", () => {
             // Tutup modal
-            applyModal.classList.add("opacity-0", "pointer-events-none");
-            applyModal.classList.remove("opacity-100");
+            applyModalNotLogin.classList.add("opacity-0", "pointer-events-none");
+            applyModalNotLogin.classList.remove("opacity-100");
         });
     }
 });

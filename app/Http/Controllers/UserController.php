@@ -249,12 +249,12 @@ class UserController extends Controller
         $kegiatan = Kegiatan::findOrFail($id_kegiatan);
         // Cek apakah user sudah mendaftar ke kegiatan ini sebelumnya
         $existingPendaftaran = Pendaftar::where('id_user', $user->id)
-                                         ->where('id_kegiatan', $kegiatan->id_kegiatan)
-                                         ->exists();
+                                     ->where('id_kegiatan', $kegiatan->id_kegiatan)
+                                     ->exists();
+
         if ($existingPendaftaran) {
             return redirect()->route('user.daftarKegiatan', $id)
-                     ->with('error', 'Anda sudah mendaftar kegiatan ini.')
-                     ->with('existingPendaftaran', $existingPendaftaran);
+                            ->with('error', 'Anda sudah mendaftar kegiatan ini.');
         }
         
         $user = User::findOrFail($id);

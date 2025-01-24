@@ -894,6 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const tglInterview = card.dataset.tglInterview;
             const lokasiInterview = card.dataset.lokasiInterview;
             const noteToApplicant = card.dataset.noteToApplicant;
+            const noteInterview = card.dataset.noteInterview;
 
             // Tambahkan kelas berdasarkan statusApplicant
             const statusElement = detailAppliedVolunteerModal.querySelector(".statusApplicant");
@@ -903,6 +904,7 @@ document.addEventListener("DOMContentLoaded", function () {
             detailAppliedVolunteerModal.querySelector(".tglInterview").textContent = tglInterview;
             detailAppliedVolunteerModal.querySelector(".lokasiInterview").textContent = lokasiInterview;
             detailAppliedVolunteerModal.querySelector(".noteToApplicant").textContent = noteToApplicant;
+            detailAppliedVolunteerModal.querySelector(".noteInterview").textContent = noteInterview;
             
             // Membuka modal
             openModal();
